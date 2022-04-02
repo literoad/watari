@@ -38,7 +38,7 @@ const SignUp: NextPage = () => {
           required
         />
         <BigButton
-          onClick={() => signIn("email", { email })}
+          onClick={() => signIn("email", { email, callbackUrl: "/dashboard" })}
           disabled={!canContinue}
         >
           Войти
