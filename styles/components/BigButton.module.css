@@ -5,13 +5,19 @@
   padding: 16px 24px;
   transition: 300ms;
   text-decoration: none;
+  color: #fff;
   border: 1px solid #c1f4ea;
+  outline: none;
   background-color: #5bbfac;
   -webkit-appearance: none;
 }
 
+.disabled {
+  filter: grayscale(0.9);
+}
+
 @media (hover: hover) {
-  .button:hover {
+  .button:hover:not(.disabled) {
     background-color: #c1f4ea;
   }
 }

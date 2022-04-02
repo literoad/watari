@@ -33,3 +33,7 @@ p {
 .text-center {
   text-align: center;
 }
+
+.text-shadow {
+  text-shadow: #000000c4 1px 1px 3px;
+}

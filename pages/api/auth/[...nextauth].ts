@@ -12,6 +12,10 @@ export default NextAuth({
       from: process.env.EMAIL_FROM,
     }),
   ],
+  pages: {
+    signIn: "/auth/sign-up",
+    verifyRequest: "/auth/email-sent",
+  },
   theme: {
     colorScheme: "dark",
     brandColor: "#5bbfac",

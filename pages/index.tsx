@@ -9,7 +9,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Literoad | Мониторинг производительности сайтов</title>
       </Head>
-      <section className={`lr-container ${s.preamble}`}>
+      <section className={`lr-container text-shadow ${s.preamble}`}>
         <h2>Мониторинг производительности сайтов</h2>
         <ul className={s.checklist}>
           <li>Ежедневные измерения</li>
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
           <li>Полная история изменений</li>
         </ul>
         <div>
-          <BigButton href="/sign-up">Попробовать бесплатно</BigButton>
+          <BigButton href="/auth/sign-up">Попробовать бесплатно</BigButton>
           <footer className={`muted ${s.footnote}`}>
             7 дней, без указания карты
           </footer>
