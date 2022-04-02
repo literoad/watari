@@ -7,7 +7,6 @@ import { SessionProvider } from "next-auth/react";
 
 export type NextPageWithAuth = NextPage & { auth?: boolean };
 
-// noinspection JSUnusedGlobalSymbols
 export default function App({
   Component,
   pageProps: { session, ...pageProps },

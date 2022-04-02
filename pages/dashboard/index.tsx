@@ -1,6 +1,7 @@
 import { NextPage, NextPageContext } from "next";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
+import ResultsGrid from "../../components/results-grid";
 
 const Dashboard: NextPage = () => {
   const { data: session } = useSession({ required: true });
@@ -13,6 +14,7 @@ const Dashboard: NextPage = () => {
         </Head>
         <section className="lr-container">
           <h2 className="text-center">Панель управления</h2>
+          <ResultsGrid />
         </section>
       </div>
     );
@@ -21,10 +23,8 @@ const Dashboard: NextPage = () => {
   return <h2 className="text-center">Доступ запрещен</h2>;
 };
 
-// noinspection JSUnusedGlobalSymbols
 export default Dashboard;
 
-// noinspection JSUnusedGlobalSymbols
 export async function getServerSideProps(context: NextPageContext) {
   return {
     props: {

@@ -16,5 +16,4 @@ const EmailSent: NextPage = () => {
   );
 };
 
-// noinspection JSUnusedGlobalSymbols
 export default EmailSent;

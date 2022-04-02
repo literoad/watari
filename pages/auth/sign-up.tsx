@@ -48,5 +48,4 @@ const SignUp: NextPage = () => {
   );
 };
 
-// noinspection JSUnusedGlobalSymbols
 export default SignUp;
