@@ -1,0 +1,22 @@
+.preamble {
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  background: url("/images/logo_transparent_no_text.png") no-repeat right center;
+  background-size: contain;
+  text-shadow: #000000c4 1px 1px 3px;
+}
+
+.checklist {
+  list-style-type: "✓";
+  padding-inline-start: 1em;
+}
+
+.checklist li {
+  padding: 4px 0;
+  padding-inline-start: 1ch;
+}

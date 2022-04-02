@@ -1,0 +1,11 @@
+.homeLink {
+  text-decoration: none;
+}
+
+.badge {
+  font-size: 0.6em;
+  font-weight: lighter;
+  top: -0.8em;
+  display: inline-block;
+  margin-left: 4px;
+}
