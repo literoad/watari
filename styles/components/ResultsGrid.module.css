@@ -1,0 +1,38 @@
+.grid {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: 2fr 1fr 3fr 1fr;
+  row-gap: 8px;
+}
+
+.header {
+  display: contents;
+}
+
+.header > div {
+  padding-bottom: 8px;
+  border-bottom: 1px solid gray;
+}
+
+.row {
+  display: contents;
+  cursor: pointer;
+}
+
+.row > .resultsCell {
+  justify-content: space-evenly;
+}
+
+.row > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 4px 0;
+  background-color: #262626;
+}
+
+.oddRow > div {
+  background-color: #3b3b3b;
+}
