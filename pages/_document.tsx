@@ -10,7 +10,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Righteous&display=swap"
           rel="stylesheet"
         />
-        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="icon" sizes="32x32" href="/images/favicon.png" />
       </Head>
       <body>
         <Main />

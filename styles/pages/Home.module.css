@@ -1,6 +1,7 @@
 .preamble {
   font-size: 1.2em;
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   justify-content: center;
   min-height: 400px;
@@ -9,6 +10,11 @@
   background: url("/images/logo_transparent_no_text.png") no-repeat right center;
   background-size: contain;
   text-shadow: #000000c4 1px 1px 3px;
+  gap: 36px;
+}
+
+.preamble > * {
+  margin: 0;
 }
 
 .checklist {
@@ -19,4 +25,10 @@
 .checklist li {
   padding: 4px 0;
   padding-inline-start: 1ch;
+}
+
+.footnote {
+  font-size: 0.7em;
+  margin-top: 8px;
+  text-align: center;
 }
