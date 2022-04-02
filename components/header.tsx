@@ -3,7 +3,7 @@ import s from "../styles/components/Header.module.css";
 
 export default function Header() {
   return (
-    <header className="lr-container">
+    <header className={`lr-container ${s.header}`}>
       <h1 title="Literoad (альфа-версия)">
         <Link href="/">
           <a className={s.homeLink}>

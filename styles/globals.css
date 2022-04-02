@@ -16,6 +16,7 @@ a {
 
 p {
   font-family: "Bitter", serif;
+  hyphens: auto;
 }
 
 .lr-container {
@@ -27,4 +28,8 @@ p {
 .muted {
   font-size: 0.9em;
   opacity: 0.6;
+}
+
+.text-center {
+  text-align: center;
 }

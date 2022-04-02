@@ -23,6 +23,20 @@ const Home: NextPage = () => {
           </footer>
         </div>
       </section>
+      <section className="lr-container">
+        <h2 className="text-center">Единый тариф</h2>
+        <div className={s.tariff}>
+          <div className={s.tariffLeft}>
+            <p className={s.price}>1&nbsp;500&nbsp;₽</p>
+            <p className="muted">за 30 дней</p>
+          </div>
+          <p className={s.tariffRight}>
+            Тариф включает ежедневное измерение производительности
+            10&nbsp;ресурсов (URL-адресов) с хранением полной истории изменений
+            показателей с момента начала мониторинга.
+          </p>
+        </div>
+      </section>
     </div>
   );
 };
