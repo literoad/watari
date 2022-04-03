@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import { session } from "../../../lib/auth-callbacks";
 import { onCreateUser } from "../../../lib/auth-events";
 import clientPromise from "../../../lib/mongodb";
 
@@ -23,5 +24,8 @@ export default NextAuth({
   },
   events: {
     createUser: onCreateUser,
+  },
+  callbacks: {
+    session,
   },
 });
