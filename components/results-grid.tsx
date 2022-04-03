@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { useCallback } from "react";
 import s from "../styles/components/ResultsGrid.module.css";
 import ResultGauge from "./result-gauge";
 
@@ -6,6 +8,27 @@ type Props = {
 };
 
 export default function ResultsGrid({ monitors }: Props) {
+  const router = useRouter();
+
+  const onDeleteMonitor = useCallback(
+    async (m: Monitor) => {
+      const doIt = confirm(
+        `Подтверждаете удаление монитора ${m.url}? История измерений также станет недоступна.`
+      );
+      if (doIt) {
+        await fetch("/api/monitors/delete", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: m._id }),
+        });
+        router.reload();
+      }
+    },
+    [router]
+  );
+
   return (
     <div className={s.grid}>
       <div className={s.header}>
@@ -29,7 +52,7 @@ export default function ResultsGrid({ monitors }: Props) {
         </div>
       </div>
       {monitors.map((m, idx) => (
-        <Row monitor={m} key={m._id} index={idx} />
+        <Row monitor={m} key={m._id} index={idx} onDelete={onDeleteMonitor} />
       ))}
     </div>
   );
@@ -49,9 +72,10 @@ export type Monitor = {
 type RowProps = {
   monitor: Monitor;
   index: number;
+  onDelete(monitor: Monitor): void;
 };
 
-function Row({ monitor, index }: RowProps) {
+function Row({ monitor, index, onDelete }: RowProps) {
   const { lastResult } = monitor;
   const hourStr = String(monitor.hourZone).padStart(2, "0");
   return (
@@ -80,7 +104,15 @@ function Row({ monitor, index }: RowProps) {
           Первое измерение произойдет по расписанию
         </div>
       )}
-      <div>Действия</div>
+      <div>
+        <button
+          className={s.action}
+          title="Удалить"
+          onClick={() => onDelete(monitor)}
+        >
+          ✖
+        </button>
+      </div>
     </div>
   );
 }

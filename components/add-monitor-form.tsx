@@ -1,4 +1,3 @@
-import { getCsrfToken } from "next-auth/react";
 import { useMemo } from "react";
 import BigButton from "./big-button";
 import s from "../styles/components/AddMonitorForm.module.css";
@@ -20,6 +19,7 @@ export default function AddMonitorForm() {
         name="url"
         placeholder="URL страницы"
         className={s.url}
+        defaultValue="https://"
         required
       />
       <select name="hourZone" className={s.hour}>
