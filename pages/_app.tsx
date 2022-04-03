@@ -4,6 +4,10 @@ import type { AppProps } from "next/app";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { SessionProvider } from "next-auth/react";
+import moment from "moment";
+import "moment/locale/ru";
+
+moment.locale("ru");
 
 export type NextPageWithAuth = NextPage & { auth?: boolean };
 
