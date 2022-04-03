@@ -1,8 +1,8 @@
 import { ObjectId } from "mongodb";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
-import clientPromise from "./mongodb";
 import fetch from "node-fetch";
+import clientPromise from "./mongodb";
 
 export async function getMonitorsForCurrentUser(context: NextPageContext) {
   const session = await getSession(context);
@@ -79,7 +79,13 @@ export async function getMonitorById(context: NextPageContext, id: string) {
         body: JSON.stringify({ id }),
       }
     );
-    measurements = await measurementsRq.json();
+    measurements = (await measurementsRq.json()) as any;
+    measurements = measurements.map((m: any) => ({
+      _id: m._id,
+      performance: m.performance ? Math.round(m.performance * 100) : null,
+      bestPractices: m.bestPractices ? Math.round(m.bestPractices * 100) : null,
+      seo: m.seo ? Math.round(m.seo * 100) : null,
+    }));
   }
 
   return { monitor, measurements };
