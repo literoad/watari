@@ -13,6 +13,7 @@ export async function session({
 
   const sessUser = session.user;
   if (sessUser) {
+    sessUser.id = user.id;
     sessUser.subscription = userStatusJson.subscription;
     sessUser.active = userStatusJson.active;
     sessUser.willRebill = userStatusJson.willRebill;
