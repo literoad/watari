@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { useCallback, MouseEvent } from "react";
 import s from "../styles/components/ResultsGrid.module.css";
 import ResultGauge from "./result-gauge";
 
@@ -78,9 +79,22 @@ type RowProps = {
 function Row({ monitor, index, onDelete }: RowProps) {
   const { lastResult } = monitor;
   const hourStr = String(monitor.hourZone).padStart(2, "0");
+
+  const onDeleteAction = useCallback(
+    (e: MouseEvent) => {
+      e.stopPropagation();
+      onDelete(monitor);
+    },
+    [monitor, onDelete]
+  );
+
   return (
     <div className={`${s.row} ${index % 2 === 1 ? s.oddRow : ""}`}>
-      <div>{monitor.url}</div>
+      <div>
+        <Link href={monitor.url}>
+          <a target="_blank">{monitor.url}</a>
+        </Link>
+      </div>
       <div>
         {hourStr}:00 &mdash; {hourStr}:59
       </div>
@@ -105,11 +119,7 @@ function Row({ monitor, index, onDelete }: RowProps) {
         </div>
       )}
       <div>
-        <button
-          className={s.action}
-          title="Удалить"
-          onClick={() => onDelete(monitor)}
-        >
+        <button className={s.action} title="Удалить" onClick={onDeleteAction}>
           ✖
         </button>
       </div>

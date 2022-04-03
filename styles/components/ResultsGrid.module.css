@@ -38,6 +38,12 @@
   background-color: #3b3b3b;
 }
 
+@media (hover: hover) {
+  .row:hover > * {
+    filter: brightness(1.2);
+  }
+}
+
 .action {
   font-size: 1.2em;
   padding: 8px;
