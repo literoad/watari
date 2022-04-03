@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 24px;
   max-width: 580px;
+  margin: 72px auto;
   text-align: center;
 }
 

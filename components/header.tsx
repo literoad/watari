@@ -16,11 +16,17 @@ export default function Header() {
         </Link>
       </h1>
       <nav className={s.nav}>
-        <Link href="/dashboard">
-          <a>Панель управления</a>
-        </Link>
-        {session && (
-          <button onClick={() => signOut({ callbackUrl: "/" })}>Выход</button>
+        {session ? (
+          <>
+            <Link href="/dashboard">
+              <a>Панель управления</a>
+            </Link>
+            <button onClick={() => signOut({ callbackUrl: "/" })}>Выход</button>
+          </>
+        ) : (
+          <Link href="/auth/sign-up">
+            <a>Вход</a>
+          </Link>
         )}
       </nav>
     </header>

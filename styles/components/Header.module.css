@@ -1,12 +1,15 @@
 .header {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 16px;
   margin-top: 48px;
 }
 
 .header h1 {
   margin: 0;
+  white-space: nowrap;
 }
 
 .homeLink {
