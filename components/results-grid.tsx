@@ -89,40 +89,48 @@ function Row({ monitor, index, onDelete }: RowProps) {
   );
 
   return (
-    <div className={`${s.row} ${index % 2 === 1 ? s.oddRow : ""}`}>
-      <div>
-        <Link href={monitor.url}>
-          <a target="_blank">{monitor.url}</a>
-        </Link>
-      </div>
-      <div>
-        {hourStr}:00 &mdash; {hourStr}:59
-      </div>
-      {lastResult ? (
-        <>
-          <div>
-            <ResultGauge value={lastResult.performance} title="Performance" />
-          </div>
-          <div>
-            <ResultGauge
-              value={lastResult.bestPractices}
-              title="Best Practices"
-            />
-          </div>
-          <div>
-            <ResultGauge value={lastResult.seo} title="SEO" />
-          </div>
-        </>
-      ) : (
-        <div className="muted" style={{ gridColumn: "span 3" }}>
-          Первое измерение произойдет по расписанию
+    // eslint-disable-next-line @next/next/link-passhref
+    <Link
+      href={{
+        pathname: "/monitors/[id]",
+        query: { id: monitor._id },
+      }}
+    >
+      <div className={`${s.row} ${index % 2 === 1 ? s.oddRow : ""}`}>
+        <div>
+          <Link href={monitor.url}>
+            <a target="_blank">{monitor.url}</a>
+          </Link>
         </div>
-      )}
-      <div>
-        <button className={s.action} title="Удалить" onClick={onDeleteAction}>
-          ✖
-        </button>
+        <div>
+          {hourStr}:00 &mdash; {hourStr}:59
+        </div>
+        {lastResult ? (
+          <>
+            <div>
+              <ResultGauge value={lastResult.performance} title="Performance" />
+            </div>
+            <div>
+              <ResultGauge
+                value={lastResult.bestPractices}
+                title="Best Practices"
+              />
+            </div>
+            <div>
+              <ResultGauge value={lastResult.seo} title="SEO" />
+            </div>
+          </>
+        ) : (
+          <div className="muted" style={{ gridColumn: "span 3" }}>
+            Первое измерение произойдет по расписанию
+          </div>
+        )}
+        <div>
+          <button className={s.action} title="Удалить" onClick={onDeleteAction}>
+            ✖
+          </button>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

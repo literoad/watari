@@ -43,3 +43,12 @@ export async function getMonitorsForCurrentUser(context: NextPageContext) {
     lastResult: measurements[m._id]?.lastResult ?? null,
   }));
 }
+
+export async function getMonitor(context: NextPageContext, id: string) {
+  const session = await getSession(context);
+  const user = session?.user;
+
+  if (!user || !id.startsWith(user.id)) {
+    return null;
+  }
+}
