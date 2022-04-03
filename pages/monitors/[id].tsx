@@ -1,15 +1,21 @@
 import { NextPage, NextPageContext } from "next";
-import { Monitor } from "../../components/results-grid";
+import { Measurement, Monitor } from "../../components/results-grid";
 import { getMonitorById } from "../../lib/monitors";
+
+type MeasurementWithId = Measurement & { _id: string };
 
 type Props = {
   monitor: Monitor;
+  measurements: MeasurementWithId[];
 };
 
-const MonitorPage: NextPage<Props> = ({ monitor }) => {
-  if (!monitor) {
+const MonitorPage: NextPage<Props> = ({ monitor, measurements }) => {
+  if (!monitor || !measurements) {
     return <h2 className="text-center">Доступ запрещён</h2>;
   }
+
+  console.log(monitor);
+  console.log(measurements);
 
   return (
     <div>
@@ -23,10 +29,14 @@ const MonitorPage: NextPage<Props> = ({ monitor }) => {
 export default MonitorPage;
 
 export async function getServerSideProps(context: NextPageContext) {
-  const monitor = await getMonitorById(context, context.query.id as string);
+  const { monitor, measurements } = await getMonitorById(
+    context,
+    context.query.id as string
+  );
   return {
     props: {
       monitor,
+      measurements,
     },
   };
 }

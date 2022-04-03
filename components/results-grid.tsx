@@ -63,11 +63,13 @@ export type Monitor = {
   _id: string;
   url: string;
   hourZone: number;
-  lastResult?: {
-    performance: number | null;
-    bestPractices: number | null;
-    seo: number | null;
-  };
+  lastResult?: Measurement;
+};
+
+export type Measurement = {
+  performance: number | null;
+  bestPractices: number | null;
+  seo: number | null;
 };
 
 type RowProps = {

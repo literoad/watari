@@ -49,7 +49,7 @@ export async function getMonitorById(context: NextPageContext, id: string) {
   const user = session?.user;
 
   if (!user || !id?.startsWith(user.id)) {
-    return null;
+    return { monitor: null, measurements: null };
   }
 
   const client = await clientPromise;
@@ -65,5 +65,22 @@ export async function getMonitorById(context: NextPageContext, id: string) {
 
   const filteredUser = await result.next();
 
-  return filteredUser?.monitors?.[0] ?? null;
+  const monitor = filteredUser?.monitors?.[0] ?? null;
+  let measurements = null;
+
+  if (monitor) {
+    const measurementsRq = await fetch(
+      `${process.env.YAGAMI_URL}/aggregator/range`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      }
+    );
+    measurements = await measurementsRq.json();
+  }
+
+  return { monitor, measurements };
 }
