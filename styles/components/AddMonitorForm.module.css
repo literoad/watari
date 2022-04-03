@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  gap: 12px;
+}
+
+.url,
+.hour {
+  padding: 8px;
+}
+
+.url {
+  flex: 3;
+}
+
+.hour {
+  flex: 1;
+}

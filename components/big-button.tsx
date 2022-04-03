@@ -9,10 +9,17 @@ type Props = {
   | {
       href: string;
       onClick?: never;
+      submit?: never;
     }
   | {
       href?: never;
       onClick(): void;
+      submit?: never;
+    }
+  | {
+      href?: never;
+      onClick?: never;
+      submit: true;
     }
 );
 
@@ -21,6 +28,7 @@ export default function BigButton({
   onClick,
   children,
   disabled,
+  submit,
 }: Props) {
   const className = `text-shadow ${s.button} ${disabled ? s.disabled : ""}`;
   return href ? (
@@ -28,7 +36,12 @@ export default function BigButton({
       <a className={className}>{children}</a>
     </Link>
   ) : (
-    <button className={className} disabled={disabled} onClick={onClick}>
+    <button
+      className={className}
+      disabled={disabled}
+      onClick={onClick}
+      type={submit ? "submit" : undefined}
+    >
       {children}
     </button>
   );

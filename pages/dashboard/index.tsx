@@ -1,6 +1,7 @@
 import { NextPage, NextPageContext } from "next";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
+import AddMonitorForm from "../../components/add-monitor-form";
 import ResultsGrid, { Monitor } from "../../components/results-grid";
 import { getMonitorsForCurrentUser } from "../../lib/monitors";
 
@@ -20,6 +21,7 @@ const Dashboard: NextPage<Props> = ({ monitors }) => {
         <section className="lr-container">
           <h2 className="text-center">Панель управления</h2>
           <ResultsGrid monitors={monitors} />
+          <AddMonitorForm />
         </section>
       </div>
     );

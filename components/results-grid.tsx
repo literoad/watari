@@ -9,10 +9,12 @@ export default function ResultsGrid({ monitors }: Props) {
   return (
     <div className={s.grid}>
       <div className={s.header}>
-        <div>URL-страницы</div>
-        <div>Окно</div>
-        <div>Результаты последнего измерения</div>
-        <div>Действия</div>
+        <div style={{ gridRow: "1 / span 2" }}>URL страницы</div>
+        <div style={{ gridRow: "1 / span 2" }}>Окно</div>
+        <div style={{ gridRow: "1 / span 2" }}>
+          Результаты последнего измерения
+        </div>
+        <div style={{ gridRow: "1 / span 2" }}>Действия</div>
       </div>
       {monitors.map((m, idx) => (
         <Row monitor={m} key={m._id} index={idx} />

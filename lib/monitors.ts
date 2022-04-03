@@ -40,6 +40,6 @@ export async function getMonitorsForCurrentUser(context: NextPageContext) {
 
   return monitors.map((m: any) => ({
     ...m,
-    lastResult: measurements[m._id].lastResult,
+    lastResult: measurements[m._id]?.lastResult ?? null,
   }));
 }

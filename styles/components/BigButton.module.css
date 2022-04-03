@@ -12,12 +12,13 @@
   -webkit-appearance: none;
 }
 
-.disabled {
+.disabled,
+form:invalid .button {
   filter: grayscale(0.9);
 }
 
 @media (hover: hover) {
-  .button:hover:not(.disabled) {
+  .button:hover:not(.disabled):not(form:invalid .button) {
     background-color: #c1f4ea;
   }
 }

@@ -18,6 +18,10 @@ const addMonitor: NextApiHandler = async (req, res) => {
   const userId = user.id;
   const { url, hourZone } = req.body;
 
+  if (hourZone < 0 || hourZone > 23) {
+    return res.status(400).send('Bad "hourZone"');
+  }
+
   const addRq = await fetch(`${process.env.YAGAMI_URL}/monitors`, {
     method: "POST",
     headers: {
@@ -27,7 +31,7 @@ const addMonitor: NextApiHandler = async (req, res) => {
       "tenant-id": userId,
       monitor: {
         url,
-        "hour-zone": hourZone,
+        "hour-zone": Math.trunc(hourZone).toString(10),
       },
     }),
   });
@@ -52,7 +56,7 @@ const addMonitor: NextApiHandler = async (req, res) => {
       }
     );
 
-  res.json({ url, hourZone });
+  res.redirect("/dashboard").json({ url, hourZone });
 };
 
 export default addMonitor;
