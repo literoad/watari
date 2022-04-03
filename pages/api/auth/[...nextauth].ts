@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import { onCreateUser } from "../../../lib/auth-events";
 import clientPromise from "../../../lib/mongodb";
 
 export default NextAuth({
@@ -19,5 +20,8 @@ export default NextAuth({
     colorScheme: "dark",
     brandColor: "#5bbfac",
     logo: "/images/logo_transparent.png",
+  },
+  events: {
+    createUser: onCreateUser,
   },
 });
