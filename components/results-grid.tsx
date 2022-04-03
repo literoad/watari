@@ -11,10 +11,22 @@ export default function ResultsGrid({ monitors }: Props) {
       <div className={s.header}>
         <div style={{ gridRow: "1 / span 2" }}>URL страницы</div>
         <div style={{ gridRow: "1 / span 2" }}>Окно</div>
-        <div style={{ gridRow: "1 / span 2" }}>
+        <div
+          className={s.tophat}
+          style={{ gridRow: "1", gridColumn: "span 3" }}
+        >
           Результаты последнего измерения
         </div>
         <div style={{ gridRow: "1 / span 2" }}>Действия</div>
+        <div className="muted" style={{ gridRow: "2" }}>
+          Performance
+        </div>
+        <div className="muted" style={{ gridRow: "2" }}>
+          Best Practices
+        </div>
+        <div className="muted" style={{ gridRow: "2" }}>
+          SEO
+        </div>
       </div>
       {monitors.map((m, idx) => (
         <Row monitor={m} key={m._id} index={idx} />
@@ -48,20 +60,26 @@ function Row({ monitor, index }: RowProps) {
       <div>
         {hourStr}:00 &mdash; {hourStr}:59
       </div>
-      <div className={s.resultsCell}>
-        {lastResult ? (
-          <>
+      {lastResult ? (
+        <>
+          <div>
             <ResultGauge value={lastResult.performance} title="Performance" />
+          </div>
+          <div>
             <ResultGauge
               value={lastResult.bestPractices}
               title="Best Practices"
             />
+          </div>
+          <div>
             <ResultGauge value={lastResult.seo} title="SEO" />
-          </>
-        ) : (
-          <p className="muted">Первое измерение произойдет по расписанию</p>
-        )}
-      </div>
+          </div>
+        </>
+      ) : (
+        <div className="muted" style={{ gridColumn: "span 3" }}>
+          Первое измерение произойдет по расписанию
+        </div>
+      )}
       <div>Действия</div>
     </div>
   );
