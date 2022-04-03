@@ -21,7 +21,14 @@ const Dashboard: NextPage<Props> = ({ monitors }) => {
         <section className="lr-container">
           <h2 className="text-center">Панель управления</h2>
           <ResultsGrid monitors={monitors} />
-          <AddMonitorForm />
+          {monitors.length < 10 ? (
+            <AddMonitorForm />
+          ) : (
+            <div className="text-center muted">
+              Возможно иметь не более 10 мониторов. Удалите один из
+              существующих, чтобы создавать новые.
+            </div>
+          )}
         </section>
       </div>
     );

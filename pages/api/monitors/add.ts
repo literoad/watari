@@ -22,6 +22,18 @@ const addMonitor: NextApiHandler = async (req, res) => {
     return res.status(400).send('Bad "hourZone"');
   }
 
+  const client = await clientPromise;
+  const userDoc = await client
+    .db()
+    .collection("users")
+    .findOne({
+      _id: new ObjectId(userId),
+    });
+
+  if (userDoc?.monitors?.length >= 10) {
+    return res.status(403).send("Forbidden: too many monitors");
+  }
+
   const addRq = await fetch(`${process.env.YAGAMI_URL}/monitors`, {
     method: "POST",
     headers: {
@@ -37,7 +49,6 @@ const addMonitor: NextApiHandler = async (req, res) => {
   });
   const monitorId = await addRq.text();
 
-  const client = await clientPromise;
   await client
     .db()
     .collection("users")
