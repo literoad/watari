@@ -1,27 +1,11 @@
 import s from "../styles/components/ResultsGrid.module.css";
 import Gauge from "./gauge";
 
-export default function ResultsGrid() {
-  const results = [
-    {
-      url: "https://journal.tinkoff.ru",
-      hourZone: 2,
-      lastResult: {
-        performance: 95,
-        bestPractices: 62,
-        seo: 39,
-      },
-    },
-    {
-      url: "https://literoad.ru",
-      hourZone: 5,
-      lastResult: {
-        performance: 27,
-        bestPractices: 95,
-        seo: 65,
-      },
-    },
-  ];
+type Props = {
+  monitors: Monitor[];
+};
+
+export default function ResultsGrid({ monitors }: Props) {
   return (
     <div className={s.grid}>
       <div className={s.header}>
@@ -30,48 +14,60 @@ export default function ResultsGrid() {
         <div>Результаты последнего измерения</div>
         <div>Действия</div>
       </div>
-      {results.map((r, idx) => (
-        <Row {...r} key={r.url} index={idx} />
+      {monitors.map((m, idx) => (
+        <Row monitor={m} key={m._id} index={idx} />
       ))}
     </div>
   );
 }
 
-type RowProps = {
+export type Monitor = {
+  _id: string;
   url: string;
   hourZone: number;
-  lastResult: {
+  lastResult?: {
     performance: number;
     bestPractices: number;
     seo: number;
   };
+};
+
+type RowProps = {
+  monitor: Monitor;
   index: number;
 };
 
-function Row(props: RowProps) {
-  const hourStr = String(props.hourZone).padStart(2, "0");
+function Row({ monitor, index }: RowProps) {
+  const { lastResult } = monitor;
+  const hourStr = String(monitor.hourZone).padStart(2, "0");
   return (
-    <div className={`${s.row} ${props.index % 2 === 1 ? s.oddRow : ""}`}>
-      <div>{props.url}</div>
+    <div className={`${s.row} ${index % 2 === 1 ? s.oddRow : ""}`}>
+      <div>{monitor.url}</div>
       <div>
         {hourStr}:00 &mdash; {hourStr}:59
       </div>
       <div className={s.resultsCell}>
-        <Gauge
-          value={props.lastResult.performance}
-          size={64}
-          color={getColor(props.lastResult.performance)}
-        />
-        <Gauge
-          value={props.lastResult.bestPractices}
-          size={64}
-          color={getColor(props.lastResult.bestPractices)}
-        />
-        <Gauge
-          value={props.lastResult.seo}
-          size={64}
-          color={getColor(props.lastResult.seo)}
-        />
+        {lastResult ? (
+          <>
+            <Gauge
+              value={lastResult.performance}
+              size={64}
+              color={getColor(lastResult.performance)}
+            />
+            <Gauge
+              value={lastResult.bestPractices}
+              size={64}
+              color={getColor(lastResult.bestPractices)}
+            />
+            <Gauge
+              value={lastResult.seo}
+              size={64}
+              color={getColor(lastResult.seo)}
+            />
+          </>
+        ) : (
+          <p className="muted">Первое измерение произойдет по расписанию</p>
+        )}
       </div>
       <div>Действия</div>
     </div>

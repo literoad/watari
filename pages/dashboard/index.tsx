@@ -1,10 +1,17 @@
 import { NextPage, NextPageContext } from "next";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
-import ResultsGrid from "../../components/results-grid";
+import ResultsGrid, { Monitor } from "../../components/results-grid";
+import { getMonitorsForCurrentUser } from "../../lib/monitors";
 
-const Dashboard: NextPage = () => {
+type Props = {
+  monitors: Monitor[];
+};
+
+const Dashboard: NextPage<Props> = ({ monitors }) => {
   const { data: session } = useSession({ required: true });
+
+  console.log(monitors);
 
   if (session) {
     return (
@@ -14,7 +21,7 @@ const Dashboard: NextPage = () => {
         </Head>
         <section className="lr-container">
           <h2 className="text-center">Панель управления</h2>
-          <ResultsGrid />
+          <ResultsGrid monitors={monitors} />
         </section>
       </div>
     );
@@ -26,9 +33,14 @@ const Dashboard: NextPage = () => {
 export default Dashboard;
 
 export async function getServerSideProps(context: NextPageContext) {
+  const [session, monitors] = await Promise.all([
+    getSession(context),
+    getMonitorsForCurrentUser(context),
+  ]);
   return {
     props: {
-      session: await getSession(context),
+      session,
+      monitors,
     },
   };
 }
