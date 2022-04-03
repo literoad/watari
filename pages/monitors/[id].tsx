@@ -1,6 +1,6 @@
 import { NextPage, NextPageContext } from "next";
 import { Monitor } from "../../components/results-grid";
-import { getMonitorsForCurrentUser } from "../../lib/monitors";
+import { getMonitorById } from "../../lib/monitors";
 
 type Props = {
   monitor: Monitor;
@@ -14,7 +14,7 @@ const MonitorPage: NextPage<Props> = ({ monitor }) => {
   return (
     <div>
       <section className="lr-container text-center">
-        <h2>Монитор</h2>
+        <h2>Монитор {monitor.url}</h2>
       </section>
     </div>
   );
@@ -23,7 +23,7 @@ const MonitorPage: NextPage<Props> = ({ monitor }) => {
 export default MonitorPage;
 
 export async function getServerSideProps(context: NextPageContext) {
-  const monitor = await getMonitorsForCurrentUser(context);
+  const monitor = await getMonitorById(context, context.query.id as string);
   return {
     props: {
       monitor,

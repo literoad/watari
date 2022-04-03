@@ -44,11 +44,26 @@ export async function getMonitorsForCurrentUser(context: NextPageContext) {
   }));
 }
 
-export async function getMonitor(context: NextPageContext, id: string) {
+export async function getMonitorById(context: NextPageContext, id: string) {
   const session = await getSession(context);
   const user = session?.user;
 
-  if (!user || !id.startsWith(user.id)) {
+  if (!user || !id?.startsWith(user.id)) {
     return null;
   }
+
+  const client = await clientPromise;
+  const result = await client
+    .db()
+    .collection("users")
+    .find(
+      {
+        monitors: { $elemMatch: { _id: id } },
+      },
+      { projection: { "monitors.$": 1 } }
+    );
+
+  const filteredUser = await result.next();
+
+  return filteredUser?.monitors?.[0] ?? null;
 }
