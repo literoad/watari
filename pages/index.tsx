@@ -8,13 +8,21 @@ const Home: NextPage = () => {
     <div>
       <Head>
         <title>Literoad | Мониторинг производительности сайтов</title>
+        <meta
+          name="description"
+          content="Literoad - сервис мониторинга производительности сайтов. Пробный период 7 дней, без привязки карты. Lighthouse-аудит выполняется каждый день в автоматическом режиме, просмотр результатов возможен в панели управления"
+        />
+        <meta
+          name="keyword"
+          content="literoad, lighthouse, мониторинг, производительность, performance, фронтенд, сервис"
+        />
       </Head>
       <section className={`lr-container text-shadow ${s.preamble}`}>
         <h2>Мониторинг производительности сайтов</h2>
         <ul className={s.checklist}>
           <li>Ежедневные измерения</li>
-          <li>Уведомления в Telegram</li>
           <li>Хранение истории в течение года</li>
+          <li>Стандарты технологии Lighthouse</li>
         </ul>
         <div>
           <BigButton href="/auth/sign-up">Попробовать бесплатно</BigButton>

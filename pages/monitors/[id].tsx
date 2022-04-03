@@ -1,5 +1,6 @@
 import { NextPage, NextPageContext } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import {
   CartesianGrid,
   Legend,
@@ -25,9 +26,6 @@ const MonitorPage: NextPage<Props> = ({ monitor, measurements }) => {
   if (!monitor || !measurements) {
     return <h2 className="text-center">Доступ запрещён</h2>;
   }
-
-  console.log(monitor);
-  console.log(measurements);
 
   return (
     <div>
@@ -62,6 +60,17 @@ const MonitorPage: NextPage<Props> = ({ monitor, measurements }) => {
               <Legend />
             </LineChart>
           </ResponsiveContainer>
+        </div>
+        <div className="text-center">
+          <Link
+            href={`https://pagespeed.web.dev/report?url=${encodeURIComponent(
+              monitor.url
+            )}`}
+          >
+            <a target="_blank" rel="nofollow">
+              Получить полный Lighthouse-аудит
+            </a>
+          </Link>
         </div>
       </section>
     </div>
