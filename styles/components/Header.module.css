@@ -1,5 +1,12 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 48px;
+}
+
+.header h1 {
+  margin: 0;
 }
 
 .homeLink {
@@ -12,4 +19,18 @@
   top: -0.8em;
   display: inline-block;
   margin-left: 4px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav button {
+  cursor: pointer;
+  text-decoration: underline;
+  color: inherit;
+  border: none;
+  background: none;
 }

@@ -1,7 +1,10 @@
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import s from "../styles/components/Header.module.css";
 
 export default function Header() {
+  const { data: session } = useSession();
+
   return (
     <header className={`lr-container ${s.header}`}>
       <h1 title="Literoad (альфа-версия)">
@@ -12,6 +15,14 @@ export default function Header() {
           </a>
         </Link>
       </h1>
+      <nav className={s.nav}>
+        <Link href="/dashboard">
+          <a>Панель управления</a>
+        </Link>
+        {session && (
+          <button onClick={() => signOut({ callbackUrl: "/" })}>Выход</button>
+        )}
+      </nav>
     </header>
   );
 }
