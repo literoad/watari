@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 
 type Props = {
   size: number;
-  value: number;
+  value: number | "?";
   color: string;
   strokeWidth?: number;
+  title?: string;
 };
 
-const Gauge = ({ size, strokeWidth = 6, value, color }: Props) => {
+const Gauge = ({ size, strokeWidth = 6, value, color, title }: Props) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    setProgress(value);
+    setProgress(typeof value === "number" ? value : 100);
   }, [value]);
 
   const viewBox = `0 0 ${size} ${size}`;
@@ -21,6 +22,7 @@ const Gauge = ({ size, strokeWidth = 6, value, color }: Props) => {
 
   return (
     <svg width={size} height={size} viewBox={viewBox}>
+      {title && <title>{title}</title>}
       <circle
         fill="none"
         stroke="#ccc"

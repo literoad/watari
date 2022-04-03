@@ -11,8 +11,6 @@ type Props = {
 const Dashboard: NextPage<Props> = ({ monitors }) => {
   const { data: session } = useSession({ required: true });
 
-  console.log(monitors);
-
   if (session) {
     return (
       <div>

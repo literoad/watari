@@ -1,5 +1,5 @@
 import s from "../styles/components/ResultsGrid.module.css";
-import Gauge from "./gauge";
+import ResultGauge from "./result-gauge";
 
 type Props = {
   monitors: Monitor[];
@@ -26,9 +26,9 @@ export type Monitor = {
   url: string;
   hourZone: number;
   lastResult?: {
-    performance: number;
-    bestPractices: number;
-    seo: number;
+    performance: number | null;
+    bestPractices: number | null;
+    seo: number | null;
   };
 };
 
@@ -49,21 +49,12 @@ function Row({ monitor, index }: RowProps) {
       <div className={s.resultsCell}>
         {lastResult ? (
           <>
-            <Gauge
-              value={lastResult.performance}
-              size={64}
-              color={getColor(lastResult.performance)}
-            />
-            <Gauge
+            <ResultGauge value={lastResult.performance} title="Performance" />
+            <ResultGauge
               value={lastResult.bestPractices}
-              size={64}
-              color={getColor(lastResult.bestPractices)}
+              title="Best Practices"
             />
-            <Gauge
-              value={lastResult.seo}
-              size={64}
-              color={getColor(lastResult.seo)}
-            />
+            <ResultGauge value={lastResult.seo} title="SEO" />
           </>
         ) : (
           <p className="muted">Первое измерение произойдет по расписанию</p>
@@ -72,20 +63,4 @@ function Row({ monitor, index }: RowProps) {
       <div>Действия</div>
     </div>
   );
-}
-
-const colors = {
-  low: "#f63436",
-  medium: "#f6a535",
-  high: "#09c664",
-};
-
-function getColor(percentage: number) {
-  if (percentage <= 49) {
-    return colors.low;
-  }
-  if (percentage <= 89) {
-    return colors.medium;
-  }
-  return colors.high;
 }
