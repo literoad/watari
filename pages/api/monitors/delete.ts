@@ -28,7 +28,7 @@ const addMonitor: NextApiHandler = async (req, res) => {
 
   const client = await clientPromise;
   await client
-    .db()
+    .db("watari")
     .collection("users")
     .updateOne(
       {

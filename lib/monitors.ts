@@ -14,7 +14,7 @@ export async function getMonitorsForCurrentUser(context: NextPageContext) {
 
   const client = await clientPromise;
   const userDoc = await client
-    .db()
+    .db("watari")
     .collection("users")
     .findOne({
       _id: new ObjectId(user.id),
@@ -54,7 +54,7 @@ export async function getMonitorById(context: NextPageContext, id: string) {
 
   const client = await clientPromise;
   const result = await client
-    .db()
+    .db("watari")
     .collection("users")
     .find(
       {

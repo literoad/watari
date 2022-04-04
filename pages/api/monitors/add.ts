@@ -24,7 +24,7 @@ const addMonitor: NextApiHandler = async (req, res) => {
 
   const client = await clientPromise;
   const userDoc = await client
-    .db()
+    .db("watari")
     .collection("users")
     .findOne({
       _id: new ObjectId(userId),
@@ -50,7 +50,7 @@ const addMonitor: NextApiHandler = async (req, res) => {
   const monitorId = await addRq.text();
 
   await client
-    .db()
+    .db("watari")
     .collection("users")
     .updateOne(
       {
