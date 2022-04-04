@@ -37,6 +37,7 @@ const addMonitor: NextApiHandler = async (req, res) => {
   const addRq = await fetch(`${process.env.YAGAMI_URL}/monitors`, {
     method: "POST",
     headers: {
+      Authorization: `Api-Key ${process.env.SERVICE_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

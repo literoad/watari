@@ -13,6 +13,7 @@ const prolongSubscription: NextApiHandler = async (req, res) => {
   const prolongRq = await fetch(`${process.env.SHINGO_URL}/payments`, {
     method: "POST",
     headers: {
+      Authorization: `Api-Key ${process.env.SERVICE_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

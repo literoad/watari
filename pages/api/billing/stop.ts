@@ -13,6 +13,7 @@ const stopAutoBilling: NextApiHandler = async (req, res) => {
   await fetch(`${process.env.SHINGO_URL}/payments/disable-rebill`, {
     method: "POST",
     headers: {
+      Authorization: `Api-Key ${process.env.SERVICE_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

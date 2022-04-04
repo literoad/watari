@@ -8,7 +8,11 @@ export async function session({
   session: Session;
   user: User;
 }) {
-  const userStatus = await fetch(`${process.env.SHINGO_URL}/users/${user.id}`);
+  const userStatus = await fetch(`${process.env.SHINGO_URL}/users/${user.id}`, {
+    headers: {
+      Authorization: `Api-Key ${process.env.SERVICE_KEY}`,
+    },
+  });
   const userStatusJson = (await userStatus.json()) as any;
 
   const sessUser = session.user;

@@ -24,6 +24,9 @@ const addMonitor: NextApiHandler = async (req, res) => {
 
   await fetch(`${process.env.YAGAMI_URL}/monitors/${id}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Api-Key ${process.env.SERVICE_KEY}`,
+    },
   });
 
   const client = await clientPromise;
