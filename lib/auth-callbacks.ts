@@ -16,7 +16,7 @@ export async function session({
     sessUser.id = user.id;
     sessUser.subscription = userStatusJson.subscription;
     sessUser.active = userStatusJson.active;
-    sessUser.willRebill = userStatusJson.willRebill;
+    sessUser.rebill = userStatusJson.rebill;
   }
 
   return session;

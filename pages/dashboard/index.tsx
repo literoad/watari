@@ -3,6 +3,7 @@ import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import AddMonitorForm from "../../components/add-monitor-form";
 import ResultsGrid, { Monitor } from "../../components/results-grid";
+import SubscriptionNotice from "../../components/subscription-notice";
 import { getMonitorsForCurrentUser } from "../../lib/monitors";
 
 type Props = {
@@ -12,7 +13,7 @@ type Props = {
 const Dashboard: NextPage<Props> = ({ monitors }) => {
   const { data: session } = useSession({ required: true });
 
-  if (session) {
+  if (session && session.user) {
     return (
       <div>
         <Head>
@@ -20,6 +21,7 @@ const Dashboard: NextPage<Props> = ({ monitors }) => {
         </Head>
         <section className="lr-container">
           <h2 className="text-center">Панель управления</h2>
+          <SubscriptionNotice user={session.user} />
           <ResultsGrid monitors={monitors} />
           {monitors.length < 10 ? (
             <AddMonitorForm />
