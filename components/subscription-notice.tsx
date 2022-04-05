@@ -27,6 +27,12 @@ export default function SubscriptionNotice({ user }: Props) {
   const router = useRouter();
 
   const onProlongSubscription = useCallback(async () => {
+    if (process.env.NO_BILLING) {
+      alert(
+        "Сайт работает в тестовом режиме, продление станет доступно уже скоро"
+      );
+      return;
+    }
     const prolongRq = await fetch("/api/billing/prolong", {
       method: "POST",
     });
