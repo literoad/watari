@@ -1,9 +1,22 @@
 .footer {
+  display: flex;
+  justify-content: space-between;
+
   margin-top: 48px;
   margin-bottom: 48px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.right {
   text-align: right;
 }
 
-.footer p {
+.footer p,
+.list li {
   margin: 4px 0;
 }
