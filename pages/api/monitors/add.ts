@@ -68,7 +68,7 @@ const addMonitor: NextApiHandler = async (req, res) => {
       }
     );
 
-  res.redirect("/dashboard").json({ url, hourZone });
+  res.redirect("/dashboard");
 };
 
 export default addMonitor;
