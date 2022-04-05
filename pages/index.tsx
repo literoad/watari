@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import BigButton from "../components/big-button";
 import s from "../styles/pages/Home.module.css";
 
@@ -45,6 +46,13 @@ const Home: NextPage = () => {
             показателей.
           </p>
         </div>
+      </section>
+      <section className="lr-container">
+        <h2 className="text-center">
+          <Link href="/how-it-works">
+            <a>Как работает аудит?</a>
+          </Link>
+        </h2>
       </section>
     </div>
   );

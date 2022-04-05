@@ -23,7 +23,7 @@ p {
 .lr-container {
   max-width: 980px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 24px 12px;
 }
 
 .muted {
