@@ -12,6 +12,10 @@
   list-style: none;
 }
 
+.left {
+  font-size: 0.9em;
+}
+
 .right {
   text-align: right;
 }
