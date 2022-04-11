@@ -18,6 +18,7 @@ const prolongSubscription: NextApiHandler = async (req, res) => {
     },
     body: JSON.stringify({
       user,
+      days: req.body.days,
     }),
   });
 
