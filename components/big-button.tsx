@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ReactChildren } from "react";
+import { ReactElement } from "react";
 import s from "../styles/components/BigButton.module.css";
 
 type Props = {
   disabled?: boolean;
-  children: ReactChildren | string;
+  children: ReactElement | ReactElement[] | string;
 } & (
   | {
       href: string;

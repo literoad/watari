@@ -1,11 +1,11 @@
 import moment from "moment";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { MouseEvent, useCallback } from "react";
 
 import s from "../styles/components/SubscriptionNotice.module.css";
 
 import { WatariUser } from "../types";
-import BigButton from "./big-button";
+import DropdownButton from "./dropdown-button";
 
 type Props = {
   user: WatariUser;
@@ -26,13 +26,21 @@ function buildNoticeMessage(user: WatariUser) {
 export default function SubscriptionNotice({ user }: Props) {
   const router = useRouter();
 
-  const onProlongSubscription = useCallback(async () => {
-    const prolongRq = await fetch("/api/billing/prolong", {
-      method: "POST",
-    });
-    const prolong = await prolongRq.json();
-    window.open(prolong.url, "_blank");
-  }, []);
+  const onProlongSubscription = useCallback(
+    async (days: number, e: MouseEvent) => {
+      e.preventDefault();
+      const prolongRq = await fetch("/api/billing/prolong", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ days }),
+      });
+      const prolong = await prolongRq.json();
+      window.open(prolong.url, "_blank");
+    },
+    []
+  );
   const onStopRebilling = useCallback(async () => {
     await fetch("/api/billing/stop", {
       method: "POST",
@@ -50,9 +58,22 @@ export default function SubscriptionNotice({ user }: Props) {
           Отключить автопродление
         </button>
       ) : (
-        <BigButton onClick={onProlongSubscription}>
-          Продлить на 30 дней (1&nbsp;500&nbsp;₽)
-        </BigButton>
+        <DropdownButton
+          label={<span className={s.dropdownSpan}>Продлить сервис</span>}
+        >
+          <button
+            onClick={(e) => onProlongSubscription(30, e)}
+            className={s.dropdownContent}
+          >
+            Продлить на 30 дней (1&nbsp;500&nbsp;₽)
+          </button>
+          <button
+            onClick={(e) => onProlongSubscription(180, e)}
+            className={s.dropdownContent}
+          >
+            Продлить на 180 дней (-11%, 8&nbsp;000&nbsp;₽)
+          </button>
+        </DropdownButton>
       )}
     </div>
   );

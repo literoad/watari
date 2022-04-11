@@ -1,0 +1,15 @@
+.root {
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: none;
+  background: #333;
+}
+
+.content[data-open="true"] {
+  display: block;
+}

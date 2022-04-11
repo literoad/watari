@@ -6,11 +6,29 @@
   background-color: #555;
 }
 
-.plainButton {
+.plainButton,
+.dropdownContent {
   cursor: pointer;
   text-decoration: underline;
   color: #fff;
   border: none;
   outline: none;
   background: none;
+}
+
+.dropdownContent {
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+}
+
+.dropdownSpan {
+  display: block;
+  min-width: 260px;
+}
+
+@media (hover: hover) {
+  .dropdownContent:hover {
+    background-color: #777;
+  }
 }
