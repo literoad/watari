@@ -1,0 +1,20 @@
+{
+  "name": "Literoad | Мониторинг производительности сайтов",
+  "short_name": "Literoad",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#63d8c4",
+  "background_color": "#000000",
+  "start_url": "/dashboard",
+  "display": "standalone"
+}

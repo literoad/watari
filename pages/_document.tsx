@@ -23,8 +23,19 @@ export default function Document() {
           href="/favicon-16x16.png"
         />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#63d8c4" />
+        <meta
+          name="application-name"
+          content="Literoad | Мониторинг производительности сайтов"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Literoad" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-tap-highlight" content="no" />
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{
